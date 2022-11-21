@@ -110,34 +110,26 @@ class LinkedList
                 end
                 i += 1
             end
+        elsif @tail == nil
+            @head = newNode
         end
     end
 
-            
+    def remove_at(index)
+        i = 1
+        current_node = @head
+        if index == 0
+            @head = @head.next_node
+        else
+            until current_node.nil?
+                previous_node = current_node
+                current_node = current_node.next_node
+                if i == index
+                    previous_node.next_node = current_node.next_node
+                    current_node.next_node = nil
+                end
+                i += 1
+            end
+        end
+    end
 end
-
-a = LinkedList.new
-
-a.append("world")
-
-a.append("tail")
-
-a.prepend("hello")
-
-a.prepend("head")
-
-p a.at(0)
-p a.at(1)
-p a.at(2)
-p a.at(3)
-
-puts "\n"
-# a.to_s
-
-a.insert_at("beautiful", 2)
-
-p a.at(0)
-p a.at(1)
-p a.at(2)
-p a.at(3)
-p a.at(4)
