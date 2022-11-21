@@ -70,6 +70,28 @@ class LinkedList
         false
     end
 
+    def find(val)
+        i = 0
+        current_node = @head
+        @size.times do
+            if current_node.data == val
+                return i
+            end
+            current_node = current_node.next_node
+            i += 1
+        end
+        return nil
+    end
+
+    def to_s
+        current_node = @head
+        until current_node.nil?
+            print "( #{current_node.data} ) -> "
+            current_node = current_node.next_node
+        end
+        print "nil"
+    end
+            
 end
 
 a = LinkedList.new
@@ -86,3 +108,5 @@ p a.at(0)
 p a.at(1)
 p a.at(2)
 p a.at(3)
+
+a.to_s
