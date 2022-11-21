@@ -15,6 +15,7 @@ class LinkedList
     end
 
     def tail
+        p @tail.next_node
         return @tail.data
     end
     
@@ -91,6 +92,27 @@ class LinkedList
         end
         print "nil"
     end
+
+    def insert_at(val, index)
+        newNode = Node.new(val)
+        current_node = @head
+        if index == 0 && @tail != nil
+            newNode.next_node = @head
+            @head = newNode
+        elsif index > 0 && @tail != nil
+            i = 1
+            until current_node.nil?
+                previous_node = current_node
+                current_node = current_node.next_node
+                if i == index
+                    previous_node.next_node = newNode
+                    newNode.next_node = current_node
+                end
+                i += 1
+            end
+        end
+    end
+
             
 end
 
@@ -109,4 +131,13 @@ p a.at(1)
 p a.at(2)
 p a.at(3)
 
-a.to_s
+puts "\n"
+# a.to_s
+
+a.insert_at("beautiful", 2)
+
+p a.at(0)
+p a.at(1)
+p a.at(2)
+p a.at(3)
+p a.at(4)
