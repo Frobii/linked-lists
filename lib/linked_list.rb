@@ -15,12 +15,12 @@ class LinkedList
     end
 
     def tail
-        p @tail.next_node
         return @tail.data
     end
     
     def append(val)
         newNode = Node.new(val)
+        current_node = @head
         if @head.nil?
             @head = newNode
         elsif @tail == nil
@@ -54,10 +54,11 @@ class LinkedList
     def pop
         current_node = @head
         (@size - 2).times do
+            @tail = current_node.next_node
             current_node = current_node.next_node
         end
         current_node.next_node = nil
-        @size = @size - 1
+        @size -= 1
     end
 
     def contains?(val)
@@ -87,10 +88,10 @@ class LinkedList
     def to_s
         current_node = @head
         until current_node.nil?
-            print "( #{current_node.data} ) -> "
+            puts "( #{current_node.data.to_s} ) -> "
             current_node = current_node.next_node
         end
-        print "nil"
+        puts "nil"
     end
 
     def insert_at(val, index)
@@ -113,6 +114,7 @@ class LinkedList
         elsif @tail == nil
             @head = newNode
         end
+        @size += 1
     end
 
     def remove_at(index)
@@ -131,5 +133,6 @@ class LinkedList
                 i += 1
             end
         end
+        @size -= 1
     end
 end
